@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/save_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="@drawable/txt_border_signup"
+        android:padding="@dimen/_2sdp">
+
+        <EditText
+            android:id="@+id/about_doctour_ar_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/txt_border_empty"
+            android:hint="نبذة عن الدكتور"
+            android:inputType="textMultiLine"
+            android:padding="@dimen/_2sdp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"></EditText>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="@drawable/txt_border_signup"
+        android:padding="@dimen/_2sdp">
+
+        <EditText
+            android:id="@+id/about_doctour_en_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/txt_border_empty"
+            android:hint="About the doctor"
+            android:inputType="textMultiLine"
+            android:padding="@dimen/_2sdp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"></EditText>
+
+    </android.support.design.widget.TextInputLayout>
+</LinearLayout>

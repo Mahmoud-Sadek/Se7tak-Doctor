@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/save_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="@drawable/txt_border_signup"
+        android:padding="@dimen/_2sdp">
+
+        <EditText
+            android:id="@+id/clinic_examination_en_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/txt_border_empty"
+            android:hint="@string/examination_fees"
+            android:inputType="number"
+            android:padding="@dimen/_2sdp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"></EditText>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+
+</LinearLayout>

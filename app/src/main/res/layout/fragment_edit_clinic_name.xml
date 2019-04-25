@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/save_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="@drawable/txt_border_signup"
+        android:padding="@dimen/_2sdp">
+
+
+        <EditText
+            android:id="@+id/clinic_name_ar_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/txt_border_empty"
+            android:hint="إسم العيادة"
+            android:inputType="textCapWords"
+            android:padding="@dimen/_2sdp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"></EditText>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="@drawable/txt_border_signup"
+        android:padding="@dimen/_2sdp">
+
+        <EditText
+            android:id="@+id/clinic_name_en_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/txt_border_empty"
+            android:hint="Clinic Name"
+            android:inputType="textCapWords"
+            android:padding="@dimen/_2sdp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"></EditText>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="@drawable/txt_border_signup"
+        android:padding="@dimen/_2sdp">
+
+        <EditText
+            android:id="@+id/clinic_phone_en_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/txt_border_empty"
+            android:drawableStart="@drawable/ic_phone_black_24dp"
+            android:hint="@string/clinic_phone_number"
+            android:inputType="phone"
+            android:padding="@dimen/_2sdp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"></EditText>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+</LinearLayout>

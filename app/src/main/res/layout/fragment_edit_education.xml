@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/save_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="@drawable/txt_border_signup"
+        android:padding="@dimen/_2sdp">
+
+        <EditText
+            android:id="@+id/degree_doctor_ar_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/txt_border_empty"
+            android:drawableRight="@drawable/icon_diploma"
+            android:drawablePadding="@dimen/_4sdp"
+            android:hint="الدرجة العلمية"
+            android:inputType="textCapWords"
+            android:padding="@dimen/_2sdp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" >
+        </EditText>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="@drawable/txt_border_signup"
+        android:padding="@dimen/_2sdp">
+
+        <EditText
+            android:id="@+id/degree_doctor_en_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/txt_border_empty"
+            android:drawableLeft="@drawable/icon_diploma"
+            android:drawablePadding="@dimen/_4sdp"
+            android:hint="Degree"
+            android:inputType="textCapWords"
+            android:padding="@dimen/_2sdp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" >
+        </EditText>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="@drawable/txt_border_signup"
+        android:padding="@dimen/_2sdp">
+
+        <EditText
+            android:id="@+id/college_doctor_ar_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/txt_border_empty"
+            android:drawableRight="@drawable/icon_college"
+            android:drawablePadding="@dimen/_4sdp"
+            android:hint="الجامعة"
+            android:inputType="textCapWords"
+            android:padding="@dimen/_2sdp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" >
+        </EditText>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12sdp"
+        android:background="@drawable/txt_border_signup"
+        android:padding="@dimen/_2sdp">
+
+        <EditText
+            android:id="@+id/college_doctor_en_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/txt_border_empty"
+            android:drawableStart="@drawable/icon_college"
+            android:drawablePadding="@dimen/_4sdp"
+            android:hint="College"
+            android:inputType="textCapWords"
+            android:padding="@dimen/_2sdp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" >
+        </EditText>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/year_doctor_en_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        android:hint="@string/year"
+        android:padding="@dimen/_4sdp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textSize="@dimen/_15sdp"
+        app:met_baseColor="@android:color/white"
+        app:met_bottomTextSize="0dp"
+        app:met_floatingLabel="none"
+        android:background="@drawable/button_login"
+        app:met_primaryColor="@android:color/white"
+        app:met_singleLineEllipsis="true"
+        app:met_textColorHint="@android:color/white"
+        app:met_underlineColor="@android:color/white" />
+
+
+    <ImageView
+        android:id="@+id/degree_doctor_img"
+        android:layout_width="130dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:src="@drawable/camera_icon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_4sdp"
+        android:text="@string/photo"
+        android:layout_gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_15sdp" />
+
+</LinearLayout>

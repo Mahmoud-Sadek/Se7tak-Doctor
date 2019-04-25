@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/save_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/patient_name_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        android:hint="@string/patient_name"
+        android:enabled="false"
+        android:inputType="text"
+        android:padding="@dimen/_4sdp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textSize="@dimen/_15sdp"
+        app:met_baseColor="@android:color/white"
+        app:met_bottomTextSize="0dp"
+        app:met_floatingLabel="none"
+        app:met_primaryColor="@android:color/white"
+        app:met_singleLineEllipsis="true"
+        app:met_textColorHint="@android:color/white"
+        app:met_underlineColor="@android:color/white" />
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/examination_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:buttonTint="@color/colorPrimary"
+            android:outlineAmbientShadowColor="@color/colorPrimary"
+            android:outlineSpotShadowColor="@color/colorPrimary"
+            android:shadowColor="@color/colorPrimary"
+            android:text="@string/examination"
+            android:textColor="@color/colorPrimary"
+            android:textColorHighlight="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textSize="@dimen/_13sdp" />
+
+        <RadioButton
+            android:id="@+id/consultation_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/colorPrimary"
+            android:outlineAmbientShadowColor="@color/colorPrimary"
+            android:outlineSpotShadowColor="@color/colorPrimary"
+            android:shadowColor="@color/colorPrimary"
+            android:text="@string/consultation"
+            android:textColor="@color/colorPrimary"
+            android:textColorHighlight="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textColorLink="@color/colorPrimary"
+            android:textSize="@dimen/_13sdp" />
+
+    </RadioGroup>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/date_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        android:hint="@string/date_time"
+        android:inputType="date"
+        android:padding="@dimen/_4sdp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textSize="@dimen/_15sdp"
+        app:met_baseColor="@android:color/white"
+        app:met_bottomTextSize="0dp"
+        app:met_floatingLabel="none"
+        app:met_primaryColor="@android:color/white"
+        app:met_singleLineEllipsis="true"
+        app:met_textColorHint="@android:color/white"
+        app:met_underlineColor="@android:color/white" />
+
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/notes_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        android:hint="@string/notes"
+        android:inputType="textMultiLine"
+        android:padding="@dimen/_4sdp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textSize="@dimen/_15sdp"
+        app:met_baseColor="@android:color/white"
+        app:met_bottomTextSize="0dp"
+        app:met_floatingLabel="none"
+        app:met_primaryColor="@android:color/white"
+        app:met_singleLineEllipsis="true"
+        app:met_textColorHint="@android:color/white"
+        app:met_underlineColor="@android:color/white" />
+
+
+</LinearLayout>
