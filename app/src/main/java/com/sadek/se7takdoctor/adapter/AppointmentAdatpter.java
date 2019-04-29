@@ -1,6 +1,7 @@
 package com.sadek.se7takdoctor.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sadek.se7takdoctor.R;
+import com.sadek.se7takdoctor.dialog.CancelOrderDialog;
 import com.sadek.se7takdoctor.firebase.FireDatabase;
 import com.sadek.se7takdoctor.model.Order;
 import com.sadek.se7takdoctor.utils.Common;
@@ -65,7 +67,7 @@ public class AppointmentAdatpter extends RecyclerView.Adapter<AppointmentAdatpte
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editOrderStatus(data.get(position), Common.ORDER_STATUS_REJECTED);
+                showCancelDialog(data.get(position), Common.ORDER_STATUS_REJECTED, context.getString(R.string.rejected));
             }
         });
 
@@ -88,38 +90,69 @@ public class AppointmentAdatpter extends RecyclerView.Adapter<AppointmentAdatpte
         holder.accept_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editOrderStatus(data.get(position), Common.ORDER_STATUS_ACCEPTED);
+                editOrderStatus(data.get(position), Common.ORDER_STATUS_ACCEPTED, context.getString(R.string.accepted));
+
             }
         });
         holder.refuse_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editOrderStatus(data.get(position), Common.ORDER_STATUS_REJECTED);
+
+                showCancelDialog(data.get(position), Common.ORDER_STATUS_REJECTED, context.getString(R.string.rejected));
             }
         });
         holder.check_in_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editOrderStatus(data.get(position), Common.ORDER_STATUS_COMPLETED);
+                editOrderStatus(data.get(position), Common.ORDER_STATUS_COMPLETED, context.getString(R.string.compeleted));
             }
         });
         holder.no_show_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editOrderStatus(data.get(position), Common.ORDER_STATUS_CANCELED);
+                data.get(position).setNotes(context.getString(com.sadek.se7takdoctor.R.string.not_attend));
+                editOrderStatus(data.get(position), Common.ORDER_STATUS_CANCELED, context.getString(R.string.canceled));
             }
         });
 
 
     }
 
-    private void editOrderStatus(Order order, String orderStatusRejected) {
+    private void editOrderStatus(final Order order, String orderStatusRejected, final String status) {
+
         fireDatabase.EditAppointment(order, orderStatusRejected, new FireDatabase.ResultCallback() {
             @Override
             public void onCallback(boolean success) {
                 notifyDataSetChanged();
+                Common.sendNotificationOrder(order.getUserId(),context.getString(com.sadek.se7takdoctor.R.string.order_status_changed)+" "+status, (Activity) context);
             }
         });
+    }
+    CancelOrderDialog cancelOrderDialog;
+    private void showCancelDialog(final Order order, final String orderStatusRejected, final String status) {
+
+
+
+        cancelOrderDialog = new CancelOrderDialog(context, new CancelOrderDialog.DialogInterAction() {
+            @Override
+            public void onDismissed() {
+
+            }
+
+            @Override
+            public void onSubmit(String reason) {
+                order.setNotes(reason);
+                fireDatabase.EditAppointment(order, orderStatusRejected, new FireDatabase.ResultCallback() {
+                    @Override
+                    public void onCallback(boolean success) {
+                        notifyDataSetChanged();
+                        cancelOrderDialog.dismiss();
+                        Common.sendNotificationOrder(order.getUserId(),context.getString(com.sadek.se7takdoctor.R.string.order_status_changed)+" "+status, (Activity) context);
+                    }
+                });
+            }
+        });
+        cancelOrderDialog.show();
     }
 
     @Override

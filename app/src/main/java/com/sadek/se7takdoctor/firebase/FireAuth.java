@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
+import com.sadek.se7takdoctor.R;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -15,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.sadek.se7takdoctor.activity.MainActivity;
 import com.sadek.se7takdoctor.model.Doctor;
+import com.sadek.se7takdoctor.utils.Common;
 
 public class FireAuth {
     Context context;
@@ -40,9 +42,26 @@ public class FireAuth {
                 @Override
                 public void onComplete(@NonNull final Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Intent intent = new Intent(context, MainActivity.class);
-                        context.startActivity(intent);
-                        ((Activity)context).finish();
+                        if (mAuth.getCurrentUser().getDisplayName() != null) {
+                            if (!mAuth.getCurrentUser().getDisplayName().equals(Common.FIREBASE_PATIENT)) {
+                                Intent intent = new Intent(context, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                context.startActivity(intent);
+                                ((Activity) context).finish();
+                            }else {
+                                mAuth.signOut();
+                                Toast.makeText(context, context.getString(R.string.not_valid_user), Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                            }
+                        } else {
+                            Intent intent = new Intent(context, MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(intent);
+                            ((Activity) context).finish();
+                        }
+//                        Intent intent = new Intent(context, MainActivity.class);
+//                        context.startActivity(intent);
+//                        ((Activity)context).finish();
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmailAndPassword:failure", task.getException());

@@ -15,12 +15,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.sadek.se7takdoctor.R;
 import com.sadek.se7takdoctor.adapter.SpecialtyAdatpter;
 import com.sadek.se7takdoctor.dialog.AddSpecialtyDialog;
 import com.sadek.se7takdoctor.firebase.FireDatabase;
 import com.sadek.se7takdoctor.firebase.FireStorage;
 import com.sadek.se7takdoctor.model.SpecialtyModel;
+import com.sadek.se7takdoctor.utils.Common;
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
@@ -45,6 +47,9 @@ public class SpecialtyFragment extends Fragment implements IPickResult {
     @BindView(R.id.emptyTV)
     TextView emptyTV;
 
+    @BindView(R.id.btn_add)
+    View btn_add;
+
     public static ImageView reg_specialty_img;
     SpecialtyAdatpter adatpter;
     AddSpecialtyDialog addSpecialtyDialog;
@@ -68,7 +73,9 @@ public class SpecialtyFragment extends Fragment implements IPickResult {
         super.onViewCreated(view, savedInstanceState);
         unbinder = ButterKnife.bind(this, view);
 
-        list = new ArrayList<SpecialtyModel>();
+        try {
+
+            list = new ArrayList<SpecialtyModel>();
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
         recycler.setLayoutManager(layoutManager);
         adatpter = new SpecialtyAdatpter(getContext(), list);
@@ -93,6 +100,13 @@ public class SpecialtyFragment extends Fragment implements IPickResult {
                 }
             }
         });
+        if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(Common.ADMIN_ACCOUNT)){
+            btn_add.setVisibility(View.VISIBLE);
+        }
+
+        }catch (Exception e){
+
+        }
     }
 
     @OnClick(R.id.btn_add)

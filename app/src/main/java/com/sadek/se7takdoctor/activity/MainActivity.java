@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.sadek.se7takdoctor.BaseActivity;
 import com.sadek.se7takdoctor.R;
 import com.sadek.se7takdoctor.fragment.AddApointmentFragment;
 import com.sadek.se7takdoctor.fragment.AddWorkdaysFragment;
 import com.sadek.se7takdoctor.fragment.ClinicPhotoListFragment;
+import com.sadek.se7takdoctor.fragment.DashboardFragment;
 import com.sadek.se7takdoctor.fragment.EditAboutFragment;
 import com.sadek.se7takdoctor.fragment.EditAccountFragment;
 import com.sadek.se7takdoctor.fragment.EditClinicAssistantFragment;
@@ -16,10 +18,13 @@ import com.sadek.se7takdoctor.fragment.EditClinicNameFragment;
 import com.sadek.se7takdoctor.fragment.EditEducationFragment;
 import com.sadek.se7takdoctor.fragment.EditExaminationFragment;
 import com.sadek.se7takdoctor.fragment.EditPatientFragment;
-import com.sadek.se7takdoctor.fragment.EducationListFragment;
 import com.sadek.se7takdoctor.fragment.MainFragment;
 import com.sadek.se7takdoctor.fragment.PatientInfoFragment;
 import com.sadek.se7takdoctor.fragment.ProfileClinicDetails;
+import com.sadek.se7takdoctor.fragment.SpecialtyFragment;
+import com.sadek.se7takdoctor.fragment.dashboard.DoctorDetailsFragment;
+import com.sadek.se7takdoctor.fragment.dashboard.SearchByNameFragment;
+import com.sadek.se7takdoctor.utils.Common;
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.listeners.IPickResult;
 
@@ -29,9 +34,12 @@ public class MainActivity extends BaseActivity implements IPickResult {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        switchToPage(1, null, R.string.profile);
 
 
+        if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(Common.ADMIN_ACCOUNT)) {
+            switchToPage(15, null, R.string.profile);
+        } else switchToPage(1, null, R.string.profile);
+        Common.newToken(MainActivity.this);
     }
 
     public void switchToPage(int page, Bundle bundle, int nameId) {
@@ -127,6 +135,33 @@ public class MainActivity extends BaseActivity implements IPickResult {
                 break;
             case 13:
                 nextFragment = new AddApointmentFragment();
+                nextFragment.setArguments(bundle);
+                transaction.replace(R.id.head_container, nextFragment, name);
+                transaction.addToBackStack(name);
+                transaction.commit();
+                break;
+            case 14:
+                nextFragment = new SpecialtyFragment();
+                nextFragment.setArguments(bundle);
+                transaction.replace(R.id.head_container, nextFragment, name);
+                transaction.addToBackStack(name);
+                transaction.commit();
+                break;
+            case 15:
+                nextFragment = new DashboardFragment();
+                nextFragment.setArguments(bundle);
+                transaction.replace(R.id.head_container, nextFragment, name);
+                transaction.commit();
+                break;
+            case 16:
+                nextFragment = new DoctorDetailsFragment();
+                nextFragment.setArguments(bundle);
+                transaction.replace(R.id.head_container, nextFragment, name);
+                transaction.addToBackStack(name);
+                transaction.commit();
+                break;
+            case 17:
+                nextFragment = new SearchByNameFragment();
                 nextFragment.setArguments(bundle);
                 transaction.replace(R.id.head_container, nextFragment, name);
                 transaction.addToBackStack(name);

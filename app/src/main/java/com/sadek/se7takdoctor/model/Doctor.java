@@ -3,12 +3,12 @@ package com.sadek.se7takdoctor.model;
 import java.util.ArrayList;
 
 public class Doctor {
-    String id, profileImage, firstName, lastName, phoneNumber, email, password, certificateImage;
+    String id, profileImage, firstName, lastName, phoneNumber, email, password, certificateImage,rateTotal,rateCount;
     SpecialtyModel specialty;
     AboutDoctor aboutDoctor;
     DegreeDoctor degreeDoctor;
     ClinicDoctor clinicDoctor;
-    boolean published;
+    boolean published, reviewAdmin;
     ArrayList<WorkDaysDoctor> workDaysDoctor;
     public Doctor() {
     }
@@ -123,5 +123,29 @@ public class Doctor {
 
     public void setWorkDaysDoctor(ArrayList<WorkDaysDoctor> workDaysDoctor) {
         this.workDaysDoctor = workDaysDoctor;
+    }
+
+    public String getRateTotal() {
+        return rateTotal;
+    }
+
+    public void setRateTotal(String rateTotal) {
+        this.rateTotal = rateTotal;
+    }
+
+    public String getRateCount() {
+        return rateCount;
+    }
+
+    public void setRateCount(String rateCount) {
+        this.rateCount = rateCount;
+    }
+
+    public boolean isReviewAdmin() {
+        return reviewAdmin;
+    }
+
+    public void setReviewAdmin(boolean reviewAdmin) {
+        this.reviewAdmin = reviewAdmin;
     }
 }

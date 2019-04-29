@@ -90,4 +90,22 @@
     <string name="chosetime">اختار الوقت</string>
     <string name="work_time">مواعيد العمل</string>
     <string name="end">النهاية</string>
+    <string name="order_status_changed">تم تغيير حاله الطلب ل</string>
+    <string name="not_attend">لم يتم الحضور</string>
+    <string name="enter_reason">ادخل السبب</string>
+    <string name="reason">السبب</string>
+    <string name="done">تأكيد</string>
+    <string name="refuse">رفض</string>
+    <string name="not_valid_user">مستخدم غير صالح للدخول</string>
+    <string name="publish_doctor">Publish Doctor</string>
+    <string name="unpublish_doctor">Un Publish Doctor</string>
+
+
+    <string name="over_rate">التقييم العام من </string>
+    <string name="vistors"> زائر</string>
+    <string name="doctor">طبيب</string>
+    <string name="fees">سعر الكشف</string>
+    <string name="about_the_doctor">معلومات عن الطبيب</string>
+    <string name="about_the_clinic">معلومات عن العيادة</string>
+    <string name="egp">جنيه</string>
 </resources>

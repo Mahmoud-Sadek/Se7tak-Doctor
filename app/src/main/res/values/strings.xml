@@ -90,4 +90,25 @@
     <string name="friday">Friday</string>
     <string name="chosetime">Choose Time</string>
     <string name="work_time">Work Time</string>
+    <string name="order_status_changed">Order status changed to </string>
+    <string name="not_attend">Not attend</string>
+    <string name="enter_reason">Enter reason</string>
+    <string name="reason">Reason</string>
+    <string name="done">Confirm</string>
+    <string name="refuse">Refuse</string>
+
+    <string name="not_valid_user">Not Valid User</string>
+    <string name="publish_doctor">Publish Doctor</string>
+    <string name="unpublish_doctor">Un Publish Doctor</string>
+
+
+    <string name="over_rate">Overall rating from</string>
+    <string name="vistors">visitors</string>
+    <string name="doctor">Doctor</string>
+
+    <string name="fees">Fees</string>
+    <string name="about_the_doctor">About the Doctor</string>
+    <string name="about_the_clinic">About the clinic</string>
+    <string name="egp">EGP</string>
+
 </resources>

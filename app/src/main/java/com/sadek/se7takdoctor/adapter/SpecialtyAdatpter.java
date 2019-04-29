@@ -3,7 +3,6 @@ package com.sadek.se7takdoctor.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.sadek.se7takdoctor.R;
 import com.sadek.se7takdoctor.fragment.RegisterFragment;
 import com.sadek.se7takdoctor.model.SpecialtyModel;
@@ -19,7 +19,6 @@ import com.sadek.se7takdoctor.utils.Common;
 import com.sadek.se7takdoctor.utils.LocaleUtils;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -53,14 +52,18 @@ public class SpecialtyAdatpter extends RecyclerView.Adapter<SpecialtyAdatpter.Vi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (FirebaseAuth.getInstance().getCurrentUser()!= null)
+                if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(Common.ADMIN_ACCOUNT))
+                    return;
                 RegisterFragment.doctorModel.setSpecialty(data.get(position));
-                ((Activity)context).onBackPressed();
+                ((Activity) context).onBackPressed();
             }
         });
 
-        if(Paper.book().read(Common.language).equals(LocaleUtils.ARABIC)) {
+        if (Paper.book().read(Common.language).equals(LocaleUtils.ARABIC)) {
             holder.nameTV.setText(data.get(position).getTitleAr());
-        }else {
+        } else {
             holder.nameTV.setText(data.get(position).getTitleEn());
         }
 

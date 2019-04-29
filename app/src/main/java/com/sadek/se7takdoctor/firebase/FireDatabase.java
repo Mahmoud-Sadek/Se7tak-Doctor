@@ -18,7 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sadek.se7takdoctor.activity.MainActivity;
 import com.sadek.se7takdoctor.model.AboutDoctor;
-import com.sadek.se7takdoctor.model.Appointment;
 import com.sadek.se7takdoctor.model.ClinicDoctor;
 import com.sadek.se7takdoctor.model.DegreeDoctor;
 import com.sadek.se7takdoctor.model.Doctor;
@@ -88,7 +87,38 @@ public class FireDatabase {
 
     public void publishDoctor(final Doctor user) {
         progressDialog.show();
-        user.setPublished(true);
+        user.setReviewAdmin(true);
+        reference.child(Common.FIREBASE_DOCTORS).child(user.getId()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if (task.isSuccessful()) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "createUserWithEmail:success");
+                    progressDialog.dismiss();
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                    ((Activity) context).finish();
+                    Toast.makeText(context, "success",
+                            Toast.LENGTH_SHORT).show();
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    progressDialog.dismiss();
+                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                    Toast.makeText(context, task.getException().getMessage(),
+                            Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        });
+    }
+
+    public void publishOrUnPublishDoctor(boolean publish, final Doctor user) {
+        progressDialog.show();
+        user.setPublished(publish);
         reference.child(Common.FIREBASE_DOCTORS).child(user.getId()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -208,7 +238,7 @@ public class FireDatabase {
     }
 
     // this method for get all drivers from database
-    public void EditAppointment(Order order,String status , final ResultCallback callback) {
+    public void EditAppointment(Order order, String status, final ResultCallback callback) {
         progressDialog.show();
         order.setStuatus(status);
         reference.child(Common.FIREBASE_DOCTOR_ORDER).child(order.getId()).setValue(order)
@@ -312,6 +342,60 @@ public class FireDatabase {
                     callback.onCallback(doctor);
                 } else
                     callback.onCallback(doctor);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("error", databaseError.getMessage());
+            }
+        });
+    }
+
+    // this method for get all drivers from database
+    public void getDoctor(String doctorId, final DoctorCallback callback) {
+
+        reference.child(Common.FIREBASE_DOCTORS).child(doctorId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Doctor doctor = new Doctor();
+                if (dataSnapshot.exists()) {
+                    doctor = dataSnapshot.getValue(Doctor.class);
+                    callback.onCallback(doctor);
+                } else
+                    callback.onCallback(doctor);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("error", databaseError.getMessage());
+            }
+        });
+    }
+
+    // this method for get all drivers from database
+    public void getDoctorList(final boolean publish, final DoctorListCallback callback) {
+        final ArrayList<Doctor> list = new ArrayList<>();
+        reference.child(Common.FIREBASE_DOCTORS).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if (snapshot.exists()) {
+                            Doctor model = snapshot.getValue(Doctor.class);
+                            if (!publish) {
+                                if (!model.isPublished())
+                                    if (model.isReviewAdmin())
+                                        list.add(model);
+                            } else if (publish)
+                                if (model.isPublished())
+                                    list.add(model);
+                        }
+                    }
+                    callback.onCallback(list);
+                } else
+                    callback.onCallback(list);
 
             }
 
@@ -539,5 +623,9 @@ public class FireDatabase {
 
     public interface ResultCallback {
         void onCallback(boolean success);
+    }
+
+    public interface DoctorListCallback {
+        void onCallback(ArrayList<Doctor> model);
     }
 }
